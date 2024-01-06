@@ -1,0 +1,22 @@
+grades = [95, 100, 75, 60, 30, 45, 90, 95, 70, 80, 60, 70]
+
+print("Grade Boundaries:")
+print("A - from 90 to 100")
+print("B - from 75 to 89")
+print("C - from 0 to 74")
+print(" ")
+
+for i in range(0, len(grades)):
+    #print(grades[i])
+    if grades[i] >= 90 and grades[i] <= 100:
+        print("Grade number", i+1, "is an A")
+    elif grades[i] >= 75 and grades[i] < 90:
+        print("Grade number", i+1, "is a B")
+    elif grades[i] > 0 and grades[i] < 75:
+        print("Grade number", i+1, "is a C")
+    elif grades[i] < 0 or grades[i] > 100:
+        print("ERROR 404 - PLEASE CHANGE YOUR NUMBER")
+        break
+
+print(" ")
+print("The total number of grades is", len(grades))
