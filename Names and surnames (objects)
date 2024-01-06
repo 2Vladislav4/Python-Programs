@@ -1,0 +1,19 @@
+class Person: 
+    name = ""
+    surname = ""
+
+person1 = Person()
+person1.name = "John"
+person1.surname = "Smith"
+
+person2 = Person()
+person2.name = "Bob"
+person2.surname = "Robertson"
+
+person3 = Person()
+person3.name = "James"
+person3.surname = "Joyce"
+
+print(f"First person has a name {person1.name} and a surname {person1.surname}")
+print(f"Second person has a name {person2.name} and a surname {person2.surname}")
+print(f"Third person has a name {person3.name} and a surname {person3.surname}")
