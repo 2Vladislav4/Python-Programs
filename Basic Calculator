@@ -1,0 +1,46 @@
+print("Basic_Calculator.com")
+print("Welcome to our website :)")
+print(" ")
+print("Please, enter your personal information")
+
+def display_info(first_name, last_name):
+    print('First Name:', first_name)
+    print('Last Name:', last_name)
+    
+display_info(last_name = input(), first_name = input())
+print(" ")
+
+a = int(input("Enter the first number: "))
+b = int(input("Enter the second number: "))
+print(" ")
+
+def add_numbers(a, b):
+    sum = a + b
+    print('Sum result:', sum)
+    
+def subtract_numbers(a, b):
+    sub = a - b
+    print('Subtraction result:', sub)
+
+def multiply_numbers(a, b):
+    mult = a * b
+    print('Multiplication result:', mult)
+    
+def divide_numbers(a, b):
+    div = a / b
+    print('Division result:', div)
+    
+def square_a(a):
+    sq_a = a ** 2
+    print('First number squared result:', sq_a)
+    
+def square_b(b):
+    sq_b = b ** 2
+    print('Second number squared result:', sq_b)
+    
+print(add_numbers(a, b))
+print(subtract_numbers(a, b))
+print(multiply_numbers(a, b))
+print(divide_numbers(a, b))
+print(square_a(a))
+print(square_b(b))
