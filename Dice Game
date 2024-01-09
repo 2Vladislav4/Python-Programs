@@ -1,0 +1,163 @@
+import random
+
+ladder = ["*", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "#"]
+pPosition = 0
+dice = 0
+takes = 0
+request = 0
+dice_request = 0
+
+def ASCIIwelcome():
+	print("  _      __    __                  ")
+	print(" | | /| / /__ / /______  __ _  ___ ")
+	print(" | |/ |/ / -_) / __/ _ \/  ' \/ -_) ")
+	print(" |__/|__/\__/_/\__/\___/_/_/_/\__/ ")
+
+ASCIIwelcome()
+print("")
+print("Welcome to the Snake Ladder game!")
+print("Here's your game board. Your possition is marked as * , and finish is marked as #.")
+print("There are 17 positions you have to go through.")
+print("Enter key 'D' to roll a dice. Do you want me to tell you any more details?")
+while request == 0:
+	answer = input("Enter Yes/No: ")
+	if answer == "yes" or answer == "YES" or answer == "Yes" or answer == "y":
+		print("Positions 5, 7 and 13 move you back to the start.")
+		print("Positions 8, 12 and 16 move you 2 positions back.")
+		print("Positions 4 and 9 move you 2 positions forward.")
+		print("That's it! Enjoy the game! :)")
+		request = 1
+	elif answer == "no" or answer == "NO" or answer == "No" or answer == "n":
+		print("Enjoy the game! :)")
+		request = 1
+print("   ")
+
+def printList(ladder):
+	for i in range(len(ladder)):
+		print(ladder[i], end=' ')
+	print("")
+	return ladder
+
+def ASCIIcube():
+	print("       _______")
+	print("     /\       \ ")
+	print("    /()\   ()  \ ")
+	print("   /    \_______\ ")
+	print("   \    /()     / ")
+	print("    \()/   ()  / ")
+	print("     \/_____()/ ")
+
+def ASCIIbackArrow():
+	print("       . ")
+	print("     .;;............ .. ")
+	print("   .;;;;::::::::::::.. ")
+	print("    ':;;:::::::::::: . . ")
+	print("      ': ")
+
+def ASCIIminusTwo():
+	print("           ___  ")
+	print("          |__ \ ")
+	print("  ______     ) | ")
+	print(" |______|   / / ")
+	print("           / /_ ")
+	print("          |____| ")
+
+def ASCIIplusTwo():
+	print("          ___  ")
+	print("    _    |__ \ ")
+	print("  _| |_     ) | ")
+	print(" |_   _|   / /  ")
+	print("   |_|    / /_ ")
+	print("         |____| ")
+
+def ASCIIvictory():
+	print("  _   ___     __               ")
+	print(" | | / (_)___/ /____  ______ __")
+	print(" | |/ / / __/ __/ _ \/ __/ // /")
+	print(" |___/_/\__/\__/\___/_/  \_, / ")
+	print("                        /___/ ")
+
+while pPosition < len(ladder) - 1:
+	
+	pPosition = pPosition + dice
+
+	if pPosition < len(ladder) - 1:
+		ladder.pop(pPosition)
+		ladder.insert(pPosition, "*")
+	
+		if not pPosition == 0:
+			prevPosition = pPosition - dice
+			ladder.pop(prevPosition)
+			ladder.insert(prevPosition, "_")
+		
+		print(" ")
+		printList(ladder)
+		print(" ")
+
+		if pPosition == 5 or pPosition == 7 or pPosition == 13:
+			print("Oops! You need to go back to the start!")
+
+			ladder.pop(0)
+			ladder.insert(0, "*")
+			ladder.pop(pPosition)
+			ladder.insert(pPosition, "_")
+			
+			print("Dice: - ")
+			print("Current position: 0")
+			ASCIIbackArrow()
+			printList(ladder)
+			print(" ")
+			pPosition = 0
+
+		if pPosition == 12 or pPosition == 8 or pPosition == 16:
+			print("Oh no! Your position will be decreased!")
+
+			ladder.pop(pPosition - 2)
+			ladder.insert(pPosition - 2, "*")
+			ladder.pop(pPosition)
+			ladder.insert(pPosition, "_")
+
+			print("Dice: - ")
+			print("Current position: ", pPosition - 2)
+			ASCIIminusTwo()
+			print(" ")
+			printList(ladder)
+			print(" ")
+			pPosition = pPosition - 2
+
+		if pPosition == 4 or pPosition == 9:
+			print("Wow! You're lucky! Your position will be increased!")
+			
+			ladder.pop(pPosition + 2)
+			ladder.insert(pPosition + 2, "*")
+			ladder.pop(pPosition)
+			ladder.insert(pPosition, "_")
+
+			print("Dice: - ")
+			print("Current position: ", pPosition + 2)
+			ASCIIplusTwo()
+			print(" ")
+			printList(ladder)
+			print(" ")
+			pPosition = pPosition + 2
+
+		while dice_request == 0:
+			dice_button = input("--> ")
+			if dice_button == "d" or dice_button == "D":
+				dice = random.randint(1, 6)
+				dice_request = 1
+				takes = takes + 1
+				print("Dice: ", dice)
+				if pPosition + dice < len(ladder) - 1:
+					print("Current position: ", pPosition + dice)
+				else:
+					print("Current position: Finish")
+				ASCIIcube()
+		dice_request = 0
+			
+
+if pPosition >= len(ladder) - 1:
+	print(" ")
+	print("Congratulations! You've won the game!")
+	print("Total takes: ", takes)
+	ASCIIvictory()
