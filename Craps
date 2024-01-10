@@ -1,0 +1,97 @@
+import random
+
+variable = 0
+variable_ask = 0
+take = 0
+point_array = []
+
+def ASCIIcraps():
+	print('''
+ ▄▄· ▄▄▄   ▄▄▄·  ▄▄▄·.▄▄ · 
+▐█ ▌▪▀▄ █·▐█ ▀█ ▐█ ▄█▐█ ▀. 
+██ ▄▄▐▀▀▄ ▄█▀▀█  ██▀·▄▀▀▀█▄
+▐███▌▐█•█▌▐█ ▪▐▌▐█▪·•▐█▄▪▐█
+·▀▀▀ .▀  ▀ ▀  ▀ .▀    ▀▀▀▀  ''')
+
+def ASCIIlose():
+	print('''
+·▄▄▄▄  ▄▄▄ .·▄▄▄▄▄▄ . ▄▄▄· ▄▄▄▄▄
+██▪ ██ ▀▄.▀·▐▄▄·▀▄.▀·▐█ ▀█ •██  
+▐█· ▐█▌▐▀▀▪▄██▪ ▐▀▀▪▄▄█▀▀█  ▐█.▪
+██. ██ ▐█▄▄▌██▌.▐█▄▄▌▐█ ▪▐▌ ▐█▌·
+▀▀▀▀▀•  ▀▀▀ ▀▀▀  ▀▀▀  ▀  ▀  ▀▀▀ ''')
+
+def ASCIIvictory():
+	print('''
+ ▌ ▐·▪   ▄▄· ▄▄▄▄▄      ▄▄▄   ▄· ▄▌
+▪█·█▌██ ▐█ ▌▪•██  ▪     ▀▄ █·▐█▪██▌
+▐█▐█•▐█·██ ▄▄ ▐█.▪ ▄█▀▄ ▐▀▀▄ ▐█▌▐█▪
+ ███ ▐█▌▐███▌ ▐█▌·▐█▌.▐▌▐█•█▌ ▐█▀·.
+. ▀  ▀▀▀·▀▀▀  ▀▀▀  ▀█▄▀▪.▀  ▀  ▀ • ''')
+
+def ASCIIcubes():
+	print("               (( _______ ")
+	print("     _______     /\O    O\ ")
+	print("    /O     /\   /  \      \ ")
+	print("   /   O  /O \ / O  \O____O\ ))")
+	print("((/_____O/    \\    /O     / ")
+	print("  \O    O\    / \  /   O  / ")
+	print("   \O    O\ O/   \/_____O/ ")
+	print("    \O____O\/ ))          ))")
+	print("  (( ")
+
+ASCIIcraps()
+print("Welcome to Craps!")
+print("This game is played by rolling dice.")
+print("Enter key 'D' to roll dice.")
+while variable_ask == 0:
+	ask = input("Do you want to read the rules? Enter Yes/No: ")
+	if ask == "yes" or ask == "YES" or ask == "y" or ask == "Yes":
+		print("On your first roll you need to get a sum of your")
+		print("dice values to be 7 or 11, which is how you can win")
+		print("the game. In case you are not that lucky, you need to")
+		print("roll dice until you get your dice sum equal to your first")
+		print("dice value that we call a 'point'. However, if you")
+		print("get the dice value of 7 or eleven, you lose.")
+		print("That's it! Enjoy the game! :)")
+		variable_ask = 1
+	elif ask == "no" or ask == "NO" or ask == "No" or ask == "n":
+		print("Enjoy the game!")
+		variable_ask = 1
+
+
+while variable == 0:
+	print(" ")
+	key_pressed = input("Roll your dice! ")
+	if key_pressed == "D" or key_pressed == "d":
+		
+		ASCIIcubes()
+		take = take + 1
+		print("Roll number: ", take)
+		die1 = random.randint(1, 6)
+		die2 = random.randint(1, 6)
+		die_sum = die1 + die2
+		print("First die value: ", die1)
+		print("First die value: ", die2)
+		print("Die sum: ", die1 + die2)
+
+		if take == 1:
+			if die_sum == 7 or die_sum == 11:
+				print("Congratulations! YOU WIN!")
+				ASCIIvictory()
+				variable = 1
+			else:
+				point = die_sum
+				point_array.append(point)
+				print("POINT: ", point_array[0])
+				print(" ")
+
+		if take > 1:
+			if die_sum == point_array[0]:
+				print("Congratulations! YOU WIN!")
+				ASCIIvictory()
+				variable = 1
+			elif die_sum == 7 or die_sum == 11:
+				ASCIIlose()
+				print("Oh no! YOU'VE LOST!")
+				variable = 1
