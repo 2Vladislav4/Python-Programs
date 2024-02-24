@@ -11,9 +11,10 @@ for i in inp:
 while count < len(list):
 	if count % 2 == 0:
 		list2.append(list[count])
+		sum = sum + list[count]
 	else:
 		list2.append(list[count]*3)
-	sum = sum + list[count]
+		sum = sum + list[count]*3
 	count = count + 1
 
 remainder = sum % 10
