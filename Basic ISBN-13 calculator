@@ -1,0 +1,25 @@
+inp = input("Please enter your barcode: ")
+list = []
+list2 = []
+sum = 0
+odd = 0
+
+for i in inp:
+	if not i == "-" and not i == " ":
+		list.append(int(i))
+
+for i in list:
+	if i % 2 == 0:
+		list2.append(i)
+		sum = sum + i
+	else:
+		odd = i * 3
+		list2.append(odd)
+		sum = sum + odd
+
+remainder = sum % 10
+if not remainder == 0:
+	checkdigit = 10 - remainder
+	print("Check digit:", checkdigit)
+if remainder == 0:
+	print("Checkdigit: 0")
