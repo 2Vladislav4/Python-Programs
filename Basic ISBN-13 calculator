@@ -2,20 +2,19 @@ inp = input("Please enter your barcode: ")
 list = []
 list2 = []
 sum = 0
-odd = 0
+count = 0
 
 for i in inp:
 	if not i == "-" and not i == " ":
 		list.append(int(i))
 
-for i in list:
-	if i % 2 == 0:
-		list2.append(i)
-		sum = sum + i
+while count < len(list):
+	if count % 2 == 0:
+		list2.append(list[count])
 	else:
-		odd = i * 3
-		list2.append(odd)
-		sum = sum + odd
+		list2.append(list[count]*3)
+	sum = sum + list[count]
+	count = count + 1
 
 remainder = sum % 10
 if not remainder == 0:
